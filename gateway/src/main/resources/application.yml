@@ -1,0 +1,25 @@
+server.port: 8999
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: inventory
+          uri: http://localhost:8080
+          predicates:
+            - Path=/inventory/**
+          filters:
+            - StripPrefix=1
+        - id: store
+          uri: http://localhost:8081
+          predicates:
+            - Path=/store/**
+          filters:
+            - StripPrefix=1
+        - id: checkout
+          uri: http://localhost:8082
+          predicates:
+            - Path=/checkout/**
+          filters:
+            - StripPrefix=1
+

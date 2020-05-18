@@ -1,0 +1,3 @@
+server:
+  port: 8081
+api.url.inventory: http://localhost:8080/inventory/
