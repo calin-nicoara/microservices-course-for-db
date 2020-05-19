@@ -3,6 +3,8 @@ package ro.esolacad.microservicesdemo.checkout.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ro.esolacad.microservicesdemo.checkout.client.InventoryClient;
+import ro.esolacad.microservicesdemo.checkout.client.InventoryFeignClient;
+import ro.esolacad.microservicesdemo.checkout.config.KafkaGateway;
 import ro.esolacad.microservicesdemo.checkout.entities.Cart;
 import ro.esolacad.microservicesdemo.checkout.entities.CartItem;
 import ro.esolacad.microservicesdemo.checkout.models.AddCartItemModel;
@@ -15,11 +17,29 @@ import javax.transaction.Transactional;
 @Transactional
 public class CartService {
 
-    private final InventoryClient inventoryClient;
+    private final InventoryFeignClient inventoryClient;
     private final CartItemRepository cartItemRepository;
+
+    private final KafkaGateway kafkaGateway;
 
     public Integer addCartItem(final AddCartItemModel addCartItemModel) {
         // Add to  CART LOGIC
+        CartItem cartItem1 = saveCartItemAndGet(addCartItemModel);
+
+        inventoryClient.addStockQuantity(addCartItemModel);
+
+        return cartItem1.getQuantity();
+    }
+
+    public Integer addCartItemAsync(final AddCartItemModel addCartItemModel) {
+        CartItem cartItem1 = saveCartItemAndGet(addCartItemModel);
+
+        kafkaGateway.sendCartItem(addCartItemModel);
+
+        return cartItem1.getQuantity();
+    }
+
+    private CartItem saveCartItemAndGet(final AddCartItemModel addCartItemModel) {
         CartItem cartItem1 = cartItemRepository.findByCartIdAndProductCode(addCartItemModel.getCartId(),
                 addCartItemModel.getProductCode())
                 .map(cartItem -> {
@@ -36,9 +56,8 @@ public class CartService {
         cartItemRepository.save(cartItem1);
 
         addCartItemModel.setQuantityToAdd(-addCartItemModel.getQuantityToAdd());
-        inventoryClient.addStockQuantity(addCartItemModel);
-
-
-        return cartItem1.getQuantity();
+        return cartItem1;
     }
+
+
 }

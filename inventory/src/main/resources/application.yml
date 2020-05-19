@@ -1,0 +1,16 @@
+server.port: 8091
+spring:
+  application:
+    name: inventory-service
+  cloud:
+    stream:
+      kafka:
+        bindings:
+          stockChannel:
+            consumer:
+              ackEachRecord: true
+      default:
+        group: 'inventoryServiceGroup'
+      bindings:
+        stockChannel:
+          destination: PRODUCT_STOCK

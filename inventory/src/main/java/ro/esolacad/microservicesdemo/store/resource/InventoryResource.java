@@ -14,17 +14,13 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/inventory")
 public class InventoryResource {
 
     private final ProductInventoryService productInventoryService;
 
     @GetMapping(value = "/{code}")
-    public ResponseEntity<ProductInventoryModel> getProductByCode(@PathVariable("code") String code,
-                                                                  @RequestHeader("X-Request-Id") String xREquest) {
-        System.out.println();
-        System.out.println(xREquest);
-        System.out.println();
-
+    public ResponseEntity<ProductInventoryModel> getProductByCode(@PathVariable("code") String code) {
         return productInventoryService.findByProductCode(code)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());

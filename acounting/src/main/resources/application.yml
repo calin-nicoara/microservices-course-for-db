@@ -1,0 +1,29 @@
+server.port: 8085
+spring:
+  application:
+    name: accouting-service
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: ${KAFKA_BROKERS:localhost}
+          transaction:
+            transaction-id-prefix: 'accounting-service-'
+            producer:
+              configuration:
+                retries: 3
+                max.in.flight.requests.per.connection: 1
+                acks: 'all'
+                linger.ms: 50
+                key.serializer: org.apache.kafka.common.serialization.StringSerializer
+        bindings:
+          stockChannel:
+            consumer:
+              ackEachRecord: true
+      default:
+        group: 'accountingServiceGroup'
+      bindings:
+        orderChannel:
+          destination: ORDER_MANAGEMENT
+        paymentChannel:
+          destination: CLIENT_PAYMENTS

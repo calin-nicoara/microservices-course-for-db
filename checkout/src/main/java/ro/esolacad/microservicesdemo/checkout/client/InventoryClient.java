@@ -7,7 +7,7 @@ import ro.esolacad.microservicesdemo.checkout.models.AddCartItemModel;
 
 import java.util.Objects;
 
-@Service
+
 public class InventoryClient {
 
     private final RestTemplate restTemplate = new RestTemplate();

@@ -22,4 +22,11 @@ public class CartResource {
 
         return ResponseEntity.ok(cartQunatity);
     }
+
+    @PostMapping("/addItemAsync")
+    public ResponseEntity<Object> addProductToCartAsync(@RequestBody AddCartItemModel addCartItemModel) {
+        Integer cartQunatity = cartService.addCartItemAsync(addCartItemModel);
+
+        return ResponseEntity.ok(cartQunatity);
+    }
 }

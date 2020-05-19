@@ -1,6 +1,7 @@
 package ro.esolacad.microservicesdemo.store.services;
 
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -15,21 +16,15 @@ import java.util.Optional;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class InventoryService {
 
-
-    private final RestTemplate restTemplate = new RestTemplate();
-    private final String apiUrl;
-
-    public InventoryService(@Value("${api.url.inventory}") String apiUrl) {
-        this.apiUrl = Objects.requireNonNull(apiUrl, "apiUrl should not be null");
-    }
+    private final InventoryClient inventoryClient;
 
     public ProductInventoryModel findProductInventoryByCode(final String code) {
-        String urlForProductCode = this.apiUrl + code;
+
         try {
-            ResponseEntity<ProductInventoryModel> forEntity = restTemplate.getForEntity(urlForProductCode, ProductInventoryModel.class);
-            return forEntity.getBody();
+            return inventoryClient.getProductInventory(code).getBody();
         } catch(HttpClientErrorException exception) {
             log.error("Product Inventory not found", exception);
 
@@ -40,13 +35,13 @@ public class InventoryService {
         }
     }
 
-    public Optional<ProductInventoryModel> findOptionalProductInventoryByCode(final String code) {
-        String urlForProductCode = "http://localhost:8080/inventory/" + code;
-        try {
-            ResponseEntity<ProductInventoryModel> forEntity = restTemplate.getForEntity(urlForProductCode, ProductInventoryModel.class);
-            return Optional.ofNullable(forEntity.getBody());
-        } catch(HttpClientErrorException exception) {
-            return Optional.empty();
-        }
-    }
+//    public Optional<ProductInventoryModel> findOptionalProductInventoryByCode(final String code) {
+//        String urlForProductCode = "http://localhost:8080/inventory/" + code;
+//        try {
+//            ResponseEntity<ProductInventoryModel> forEntity = restTemplate.getForEntity(urlForProductCode, ProductInventoryModel.class);
+//            return Optional.ofNullable(forEntity.getBody());
+//        } catch(HttpClientErrorException exception) {
+//            return Optional.empty();
+//        }
+//    }
 }

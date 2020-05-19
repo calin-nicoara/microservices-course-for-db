@@ -1,2 +1,34 @@
 server.port: 8082
 api.url.inventory: http://localhost:8080/inventory/
+spring:
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: ${KAFKA_BROKERS:localhost}
+          transaction:
+            transaction-id-prefix: 'checkout-service-'
+            producer:
+              configuration:
+                retries: 3
+                max.in.flight.requests.per.connection: 1
+                acks: 'all'
+                linger.ms: 50
+                key.serializer: org.apache.kafka.common.serialization.StringSerializer
+      bindings:
+        orderChannelV2:
+          destination: ORDER_MANAGEMENT
+        stockChannelV2:
+          destination: PRODUCT_STOCK
+        paymentChannel:
+          destination: CLIENT_PAYMENTS
+  application:
+    name: checkout-service
+feign:
+  compression:
+    request:
+      enabled: true
+    response:
+      enabled: true
+  hystrix:
+    enabled: true

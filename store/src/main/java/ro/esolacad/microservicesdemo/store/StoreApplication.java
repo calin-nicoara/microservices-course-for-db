@@ -3,6 +3,9 @@ package ro.esolacad.microservicesdemo.store;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.cloud.openfeign.FeignClient;
 import ro.esolacad.microservicesdemo.store.entities.Category;
 import ro.esolacad.microservicesdemo.store.entities.Product;
 import ro.esolacad.microservicesdemo.store.repositories.CategoryRepository;
@@ -12,6 +15,8 @@ import javax.annotation.PostConstruct;
 
 @SpringBootApplication
 @RequiredArgsConstructor
+@EnableDiscoveryClient
+@EnableFeignClients
 public class StoreApplication {
 
 	private final ProductRepository productRepository;
