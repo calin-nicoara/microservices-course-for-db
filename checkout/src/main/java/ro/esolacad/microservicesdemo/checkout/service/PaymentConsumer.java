@@ -6,6 +6,7 @@ import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Service;
 import ro.esolacad.microservicesdemo.checkout.entities.ShopOrder;
+import ro.esolacad.microservicesdemo.checkout.models.OrderModel;
 import ro.esolacad.microservicesdemo.checkout.models.PaymentLogModel;
 import ro.esolacad.microservicesdemo.checkout.repository.OrderRepository;
 
@@ -31,5 +32,10 @@ public class PaymentConsumer {
 
                     orderRepository.save(shopOrder);
                 });
+    }
+
+    @StreamListener("orderChannelInV2")
+    public void testInternalMessage(Message<OrderModel> orderModelMessage) {
+        log.info("All good!");
     }
 }

@@ -18,6 +18,8 @@ spring:
       bindings:
         orderChannelV2:
           destination: ORDER_MANAGEMENT
+        orderChannelInV2:
+          destination: ORDER_MANAGEMENT
         stockChannelV2:
           destination: PRODUCT_STOCK
         paymentChannel:

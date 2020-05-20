@@ -14,5 +14,8 @@ public interface KafkaChannels {
     MessageChannel orderChannelV2();
 
     @Input
+    SubscribableChannel orderChannelInV2();
+
+    @Input
     SubscribableChannel paymentChannel();
 }

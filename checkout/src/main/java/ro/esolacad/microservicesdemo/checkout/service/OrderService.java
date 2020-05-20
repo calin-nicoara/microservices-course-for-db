@@ -1,13 +1,10 @@
 package ro.esolacad.microservicesdemo.checkout.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpStatusCodeException;
 import ro.esolacad.microservicesdemo.checkout.config.KafkaGateway;
 import ro.esolacad.microservicesdemo.checkout.entities.OrderItem;
 import ro.esolacad.microservicesdemo.checkout.entities.ShopOrder;
-import ro.esolacad.microservicesdemo.checkout.models.OrderItemModel;
 import ro.esolacad.microservicesdemo.checkout.models.OrderModel;
 import ro.esolacad.microservicesdemo.checkout.repository.OrderItemRepository;
 import ro.esolacad.microservicesdemo.checkout.repository.OrderRepository;
@@ -55,7 +52,7 @@ public class OrderService {
 //        orderModel.setState(savedOrder.getState());
 //        orderModel.setClientCode(savedOrder.getClientCode());
 
-//        kafkaGateway.sendOrder(orderModel);
+        kafkaGateway.sendOrder(orderModel);
 
         return savedOrder.getId();
 
