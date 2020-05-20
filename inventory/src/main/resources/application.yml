@@ -9,7 +9,7 @@ spring:
       maximum-pool-size: 10
     url: jdbc:postgresql://localhost:5432/ms
     username: postgres
-    password: postgres
+    password: docker
   application:
     name: inventory-service
   cloud:

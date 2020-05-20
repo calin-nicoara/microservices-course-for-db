@@ -2,12 +2,14 @@ package ro.esolacad.microservicesdemo.store.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.context.annotation.Profile;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Service;
 import ro.esolacad.microservicesdemo.store.model.StockChangeModel;
 
 @Service
 @RequiredArgsConstructor
+@Profile("kafka")
 public class TestConsumerService {
 
     private final ProductInventoryContract productInventoryService;
