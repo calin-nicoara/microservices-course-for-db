@@ -1,0 +1,18 @@
+version: '3'
+services:
+  inventory:
+    build: .
+    ports:
+      - "8080:8080"
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=ms
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=docker
+#  redis:
+#    image: redis:alpine
+#    ports:
+#      - 6379:6379
