@@ -25,11 +25,6 @@ public class ProductInventoryServiceTest {
     @InjectMocks
     private ProductInventoryService productInventoryService;
 
-    @BeforeEach
-    void initUseCase() {
-        productInventoryService = new ProductInventoryService(productInventoryRepository);
-    }
-
     @Test
     void testStuff() {
         String productCode = "PR_1";
