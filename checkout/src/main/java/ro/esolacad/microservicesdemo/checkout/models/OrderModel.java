@@ -21,7 +21,16 @@ public class OrderModel {
 
     private ShopOrder.State state;
 
-    private BigDecimal totalValue;
+
+    //Step 1.0 DO NOT REMOVE
+    //Step 2.1 Remove from model
+//    private BigDecimal totalValue;
+
+    //Step 1.1 Add new fields
+    private BigDecimal totalValueWithTax;
+    private BigDecimal totalValueWithoutTax;
 
     private List<OrderItemModel> orderItems;
+
+    private String address;
 }

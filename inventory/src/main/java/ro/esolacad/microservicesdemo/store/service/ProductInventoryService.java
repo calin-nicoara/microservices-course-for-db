@@ -20,14 +20,14 @@ public class ProductInventoryService {
                 .map(productInventory -> ProductInventoryModel.builder()
                         .productCode(productInventory.getProductCode())
                         .price(productInventory.getPrice())
-                        .stock(productInventory.getStock())
+                        .stock(productInventory.getExtraStock())
                         .build());
     }
 
     public void modifyStock(final StockChangeModel stockChangeModel) {
         productInventoryRepository.findByProductCode(stockChangeModel.getProductCode())
                .ifPresent(productInventory -> {
-                   productInventory.setStock(productInventory.getStock() + stockChangeModel.getQuantityToAdd());
+                   productInventory.setExtraStock(productInventory.getExtraStock() + stockChangeModel.getQuantityToAdd());
 
                    // Product inventory saves anyway
                    productInventoryRepository.save(productInventory);

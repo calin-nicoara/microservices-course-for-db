@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.security.core.context.SecurityContextHolder;
 import ro.esolacad.microservicesdemo.store.entities.Category;
 import ro.esolacad.microservicesdemo.store.entities.Product;
 import ro.esolacad.microservicesdemo.store.repositories.CategoryRepository;
@@ -24,6 +25,8 @@ public class StoreApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(StoreApplication.class, args);
+
+		SecurityContextHolder.setStrategyName(SecurityContextHolder.MODE_INHERITABLETHREADLOCAL);
 	}
 
 	@PostConstruct

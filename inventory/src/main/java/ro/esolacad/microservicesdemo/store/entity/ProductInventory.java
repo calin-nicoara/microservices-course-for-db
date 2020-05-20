@@ -19,12 +19,11 @@ import java.math.BigDecimal;
 public class ProductInventory {
 
     @Id
-    @GeneratedValue
     private Long id;
 
     private String productCode;
 
     private BigDecimal price;
 
-    private Integer stock;
+    private Integer extraStock;
 }

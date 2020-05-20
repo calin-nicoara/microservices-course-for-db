@@ -22,14 +22,4 @@ public class InventoryApplication {
 		SpringApplication.run(InventoryApplication.class, args);
 	}
 
-	@PostConstruct
-	public void init() {
-		ProductInventory productInventory = ProductInventory.builder()
-				.price(BigDecimal.TEN)
-				.productCode("PR_1")
-				.stock(3)
-				.build();
-
-		productInventoryRepository.save(productInventory);
-	}
 }

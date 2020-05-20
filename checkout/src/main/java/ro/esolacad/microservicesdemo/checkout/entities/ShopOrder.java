@@ -25,7 +25,15 @@ public class ShopOrder {
 
     private State state;
 
-    private BigDecimal totalValue;
+    // Step 1.2 Remove old value from code
+    // WARNING! Do not delete column from database
+
+    // Step 2.0 We can remove the column from the DB
+//    private BigDecimal totalValue;
+
+    private BigDecimal totalValueWithoutTax;
+
+    private BigDecimal totalValueWithTax;
 
     public enum State {
         PENDING, PAYMENT_APPROVED, READY_FOR_DELIVERY, CANCELED

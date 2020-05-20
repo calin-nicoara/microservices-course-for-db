@@ -1,5 +1,15 @@
 server.port: 8091
 spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      maximum-pool-size: 10
+    url: jdbc:postgresql://localhost:5432/ms
+    username: postgres
+    password: postgres
   application:
     name: inventory-service
   cloud:
@@ -14,3 +24,6 @@ spring:
       bindings:
         stockChannel:
           destination: PRODUCT_STOCK
+security:
+  jwt:
+    public-key: classpath:public.txt
