@@ -16,7 +16,7 @@ public class ProductInventoryAssert extends AbstractAssert<ProductInventoryAsser
     public ProductInventoryAssert hasNoCode() {
         isNotNull();
         if(actual.getProductCode() != null) {
-            failWithMessage("Product inventory has code");
+            failWithMessage("Product inventory has code: " + actual.getProductCode());
         }
 
         return this;
