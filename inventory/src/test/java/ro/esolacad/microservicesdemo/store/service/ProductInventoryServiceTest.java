@@ -6,6 +6,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import ro.esolacad.microservicesdemo.store.assertions.ProductInventoryAssert;
 import ro.esolacad.microservicesdemo.store.entity.ProductInventory;
 import ro.esolacad.microservicesdemo.store.model.ProductInventoryModel;
 import ro.esolacad.microservicesdemo.store.repository.ProductInventoryRepository;
@@ -44,5 +45,15 @@ public class ProductInventoryServiceTest {
                         .price(BigDecimal.TEN)
                         .build()
         ));
+    }
+
+    @Test
+    void testCustomAssert() {
+        ProductInventory productInventory = ProductInventory.builder()
+                .productCode(null)
+                .extraStock(3)
+                .build();
+
+        ProductInventoryAssert.assertThat(productInventory).hasNoCode();
     }
 }
