@@ -10,7 +10,7 @@ import ro.esolacad.microservicesdemo.store.model.StockChangeModel;
 @RequiredArgsConstructor
 public class TestConsumerService {
 
-    private final ProductInventoryService productInventoryService;
+    private final ProductInventoryContract productInventoryService;
 
     @StreamListener("stockChannel")
     public void testReceive(final Message<StockChangeModel> message) {
