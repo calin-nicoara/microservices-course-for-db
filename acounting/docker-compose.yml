@@ -1,0 +1,15 @@
+version: '3'
+services:
+  accouting:
+    build: .
+    ports:
+      - 8085:8080
+  my-postgres:
+    image: postgres
+    ports:
+      - 54329:5432
+    environment:
+      - POSTGRES_DB=ms
+      - POSTGRES_USER=ms
+      - POSTGRES_PASSWORD=ms
+

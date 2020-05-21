@@ -1,5 +1,6 @@
 package ro.esolacad.microservicesdemo.acounting.config;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.integration.annotation.Gateway;
 import org.springframework.integration.annotation.GatewayHeader;
 import org.springframework.integration.annotation.MessagingGateway;
@@ -7,6 +8,7 @@ import org.springframework.kafka.support.KafkaHeaders;
 import ro.esolacad.microservicesdemo.acounting.models.PaymentLogModel;
 
 @MessagingGateway
+@Profile("kafka")
 public interface KafkaGateway {
 
     @Gateway(requestChannel = "paymentChannel", headers =

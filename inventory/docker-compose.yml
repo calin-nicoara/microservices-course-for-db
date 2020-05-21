@@ -1,0 +1,15 @@
+version: '3'
+services:
+  inventory:
+    build: .
+    ports:
+      - 8900:8080
+  db:
+    image: postgres
+#    ports:
+#      - 54329:5432
+    environment:
+      - POSTGRES_DB=ms
+      - POSTGRES_USER=ms
+      - POSTGRES_PASSWORD=ms
+

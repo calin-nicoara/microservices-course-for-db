@@ -2,7 +2,6 @@ package ro.esolacad.microservicesdemo.store.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ro.esolacad.microservicesdemo.store.entity.ProductInventory;
 import ro.esolacad.microservicesdemo.store.model.ProductInventoryModel;
 import ro.esolacad.microservicesdemo.store.model.StockChangeModel;
 import ro.esolacad.microservicesdemo.store.repository.ProductInventoryRepository;
@@ -11,7 +10,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class ProductInventoryService {
+public class ProductInventoryService implements IProductInventoryService {
 
     private final ProductInventoryRepository productInventoryRepository;
 

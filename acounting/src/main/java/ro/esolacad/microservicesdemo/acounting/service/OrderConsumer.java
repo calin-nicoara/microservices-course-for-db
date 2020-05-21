@@ -3,6 +3,7 @@ package ro.esolacad.microservicesdemo.acounting.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.context.annotation.Profile;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Service;
 import ro.esolacad.microservicesdemo.acounting.config.KafkaGateway;
@@ -14,6 +15,7 @@ import java.util.Random;
 @Service
 @RequiredArgsConstructor
 @Slf4j
+@Profile("kafka")
 public class OrderConsumer {
 
     private final KafkaGateway kafkaGateway;

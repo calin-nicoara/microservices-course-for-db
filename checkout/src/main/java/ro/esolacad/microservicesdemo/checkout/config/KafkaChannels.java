@@ -15,4 +15,7 @@ public interface KafkaChannels {
 
     @Input
     SubscribableChannel paymentChannel();
+
+    @Output
+    MessageChannel emailOutChannel();
 }
