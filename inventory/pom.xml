@@ -110,17 +110,17 @@
 			<scope>test</scope>
 			<version>1.10.6</version>
 		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>net.logstash.logback</groupId>-->
-<!--			<artifactId>logstash-logback-encoder</artifactId>-->
-<!--			<version>${logback-encoder.version}</version>-->
-<!--			<exclusions>-->
-<!--				<exclusion>-->
-<!--					<groupId>ch.qos.logback</groupId>-->
-<!--					<artifactId>logback-core</artifactId>-->
-<!--				</exclusion>-->
-<!--			</exclusions>-->
-<!--		</dependency>-->
+		<dependency>
+			<groupId>net.logstash.logback</groupId>
+			<artifactId>logstash-logback-encoder</artifactId>
+			<version>${logback-encoder.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>ch.qos.logback</groupId>
+					<artifactId>logback-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
